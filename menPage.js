@@ -342,3 +342,18 @@ document.querySelector('#less1200').addEventListener('click',function(){
     var data=lessThen1200(mensData);
     displayData(data);
 });
+
+function searchMe(searchValue){
+    var data=mensData.filter(function (product){
+        if(product.name.includes(searchValue)){
+            return true;
+        }
+        return false;
+    });
+    return data;
+}
+
+document.querySelector('#searchBar').addEventListener('change',function(){
+    var search=event.target.value;
+    displayData(searchMe(search));
+});

@@ -547,3 +547,19 @@ document.querySelector('#less1200').addEventListener('click',function(){
     var data=lessThen1200(womensData);
     displayData(data);
 });
+
+
+function searchMe(searchValue){
+    var data=womensData.filter(function (product){
+        if(product.name.includes(searchValue)){
+            return true;
+        }
+        return false;
+    });
+    return data;
+}
+
+document.querySelector('#searchBar').addEventListener('change',function(){
+    var search=event.target.value;
+    displayData(searchMe(search));
+});
