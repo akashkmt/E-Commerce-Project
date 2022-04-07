@@ -253,7 +253,7 @@ var mensData = [
     },
 ];
 
-
+var copyMensData=JSON.parse(JSON.stringify(mensData));  //copying Data
 var cart;
 if (localStorage.getItem('cartData') == null) {
     cart = [];
@@ -261,6 +261,25 @@ if (localStorage.getItem('cartData') == null) {
 else {
     cart = JSON.parse(localStorage.getItem('cartData'));
 }
+
+document.querySelector('#sort').addEventListener('change',function(){
+var sortType=document.querySelector('#sort').value;
+  if(sortType==''){
+      displayData(mensData);
+  }
+  else{
+    copyMensData.sort(function(a,b){
+        if(sortType=='lowToHigh'){
+            return a.price-b.price;
+        }
+        return b.price-a.price;
+    });
+    displayData(copyMensData);
+  }
+});
+
+function displayData(mensData){
+    document.querySelector('#container').innerHTML='';
 mensData.forEach(function (menData) {
     var box = document.createElement('div');
     box.setAttribute('class', 'box');
@@ -286,4 +305,40 @@ mensData.forEach(function (menData) {
     box.append(img, name, price, cartButton);
     document.querySelector('#container').append(box);
 
+});
+};
+displayData(mensData);
+
+function lessThen900(mensData){
+    var newData= mensData.filter(function(productItem){
+        if(productItem.price<=900){
+            return true;
+        }
+        else{
+            return false;
+        }
+    });
+    return newData;
+};
+
+function lessThen1200(mensData){
+    var newData= mensData.filter(function(productItem){
+        if(productItem.price<=1200){
+            return true;
+        }
+        else{
+            return false;
+        }
+    });
+    return newData;
+};
+
+document.querySelector('#less900').addEventListener('click',function(){
+    var data=lessThen900(mensData);
+    displayData(data);
+});
+
+document.querySelector('#less1200').addEventListener('click',function(){
+    var data=lessThen1200(mensData);
+    displayData(data);
 });

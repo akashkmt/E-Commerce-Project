@@ -10,6 +10,21 @@
 <body>
     <a href="./cart.html">Go to Cart</a>
     <h1 style="text-align: center;">Men's Catalog</h1>
+    <div id="sortFilter">
+        <div id="sortingBox">
+            <p>Sort Items :</p>
+            <select name="sortItems" id="sort">
+                <option value="">None</option>
+                <option value="lowToHigh">Low to High</option>
+                <option value="highToLow">High to Low</option>
+            </select>
+        </div>
+        <div id="filter">
+            <p>Filters :</p>
+            <button id="less900">Less then 900</button>
+            <button id="less1200">Less then 1200</button>
+        </div>
+    </div>
     <div id="container"></div>
     
     <script src="./menPage.js"></script>
